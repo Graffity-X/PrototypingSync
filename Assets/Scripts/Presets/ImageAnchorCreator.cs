@@ -1,3 +1,4 @@
+using Systems;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -15,10 +16,9 @@ public class ImageAnchorCreator: MonoBehaviour {
 	private GameObject imageAnchorGO;
 	public GameObject ImageAnchorGo {
 		get {
-			return debug ?new GameObject(): imageAnchorGO; }
+			return Debugger.instance.debug ?new GameObject(): imageAnchorGO; }
 	}
 
-	public bool debug;
 
 	// Use this for initialization
 	void Start () {
