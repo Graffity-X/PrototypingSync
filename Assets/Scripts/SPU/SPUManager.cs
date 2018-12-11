@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UniRx;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace SPU {
 	public class SPUManager : MonoBehaviour {
@@ -18,20 +19,21 @@ namespace SPU {
 		private void Awake () {
 			var all_=new List<Canvas>();
 			foreach (var item in relitionBoxs) {
-				try {
-					item.triggerRoot = GetRootCanvas(item.trigger.gameObject);
+				if (item.here == null) {
+					try {
+						item.here = GetRootCanvas(item.trigger.gameObject);
+					}
+					catch (Exception e) {
+						continue;
+					}
 				}
-				catch (Exception e) {
-					Debug.LogError(e);
-					continue;
-				}
-				
+
 				item.trigger.LaunchStream
-					.Where(n=>item.triggerRoot==currentCanvas)
+					.Where(n=>item.here==currentCanvas)
 					.Subscribe(n => TransCanvas(item.destination, currentCanvas))
 					.AddTo(this);
 				
-				all_.Add(item.triggerRoot);
+				all_.Add(item.here);
 				all_.Add(item.destination);
 			}
 
@@ -68,8 +70,8 @@ namespace SPU {
 		private class RelitionBox {
 			public SPUTransTrigger trigger;
 			public Canvas destination;
-			
-			public Canvas triggerRoot { get; set; }
+
+			public Canvas here;
 		}
 	}	
 }
