@@ -40,3 +40,5 @@ sysinfo.txt
 Assets/StreamingAssets/crashlytics-build.properties
 Assets/UnityARKitPlugin
 Assets/UnityARKitPlugin.meta
+Assets/Plugins
+Assets/Plugins.meta
