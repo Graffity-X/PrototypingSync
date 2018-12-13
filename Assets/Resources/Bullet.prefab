@@ -233,7 +233,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 5
-  deleteTime: 3
+  deleteTime: 2
 --- !u!135 &135708707003130218
 SphereCollider:
   m_ObjectHideFlags: 1

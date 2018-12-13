@@ -1,4 +1,5 @@
 using System.Linq;
+using Systems;
 using Battles.Systems;
 using UniRx;
 using UnityEngine;
@@ -8,23 +9,22 @@ namespace Battles.Players {
         [SerializeField] private LineRendererControll lineRendererControll;
         private Subject<bool> attackStream=new Subject<bool>();
 
-        private bool isActive;
         
         private void Start() {
-            attackStream
-                .Where(n=>this.isActive)
-                .Subscribe(n => {
-                lineRendererControll.draw = n;
-            });
-        }
+         }
 
         public void SetUp(AttackByPath attack_by_path) {
             attackStream.Merge(attack_by_path.AttackStream);
         }
 
         public void Launch() {
-            isActive = true;
+            attackStream
+                .Subscribe(n => {
+                    ScrollLogger.Log(n.ToString());
+                    lineRendererControll.draw = n;
+                });
             lineRendererControll.SetUp(this.GetComponent<PlayersManage>().Players.ToArray());
+            ScrollLogger.Log("setup attack");
         }
     }
 }

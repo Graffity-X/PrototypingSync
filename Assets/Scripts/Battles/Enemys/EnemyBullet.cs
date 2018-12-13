@@ -1,3 +1,5 @@
+using System;
+using UniRx;
 using UnityEngine;
 
 namespace Battles.Enemys {
@@ -8,7 +10,7 @@ namespace Battles.Enemys {
         public void LaunchLookAt(Vector3 point) {
             this.transform.LookAt(point);
             this.GetComponent<Rigidbody>().AddForce(transform.forward*speed,ForceMode.VelocityChange);
-            Destroy(gameObject,deleteTime);
+            Observable.Timer(TimeSpan.FromSeconds(deleteTime)).Subscribe(n => PhotonNetwork.Destroy(gameObject));
         }
     }
 }
