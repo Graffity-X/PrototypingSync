@@ -28,8 +28,7 @@ namespace Battles {
 
         private void Shot(Vector3 point) {
             var temp = Instantiate(bullet, transform.position, Quaternion.identity);
-            temp.transform.LookAt(point);
-            temp.GetComponent<EnemyBullet>().Launch();
+            temp.GetComponent<EnemyBullet>().LaunchLookAt(point);
         }
     }
 }
