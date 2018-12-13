@@ -39,4 +39,5 @@ MonoBehaviour:
   - SearchPlayer
   - DownRPC
   - UpRPC
+  - AttackRPC
   DisableAutoOpenWizard: 1

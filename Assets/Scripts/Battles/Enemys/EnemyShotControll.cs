@@ -19,7 +19,7 @@ namespace Battles.Enemys {
             new RandomInterval(attackInterval, 1.5f).PublishStream
                 .Subscribe(n => {
                     var tp = target.transform.position;
-                    var hori = PointSniper.Snipe2D(new Vector2(n, n), new Vector2(tp.x - errorRange, tp.y - errorRange),
+                    var hori = PointSniper.Snipe2D(new Vector2(tp.x - errorRange, tp.y - errorRange),
                         new Vector2(tp.x + errorRange, tp.y + errorRange));
                     Shot(new Vector3(hori.x,hori.y,tp.z));
                 });

@@ -1,3 +1,4 @@
+using System;
 using System.Linq;
 using Systems;
 using Battles.Systems;
@@ -7,24 +8,30 @@ using UnityEngine;
 namespace Battles.Players {
     public class AttackControll : MonoBehaviour {
         [SerializeField] private LineRendererControll lineRendererControll;
-        private Subject<bool> attackStream=new Subject<bool>();
+        private IObservable<bool> attackStream=new Subject<bool>();
 
+        private int attackerNum;
         
         private void Start() {
          }
 
         public void SetUp(AttackByPath attack_by_path) {
-            attackStream.Merge(attack_by_path.AttackStream);
+            attackStream=attackStream.Merge(attack_by_path.AttackStream);
+            attackerNum++;
+            ScrollLogger.Log("setup attack");
         }
 
         public void Launch() {
             attackStream
+                .Buffer(attackerNum)
                 .Subscribe(n => {
-                    ScrollLogger.Log(n.ToString());
-                    lineRendererControll.draw = n;
+                    var able = false;
+                    n.Aggregate<bool>((m, l) => able = m || l);
+                    ScrollLogger.Log(able.ToString());
+                    lineRendererControll.draw = able;
                 });
             lineRendererControll.SetUp(this.GetComponent<PlayersManage>().Players.ToArray());
-            ScrollLogger.Log("setup attack");
+            ScrollLogger.Log("Launch attack");
         }
     }
 }

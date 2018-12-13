@@ -10,10 +10,10 @@ namespace Debugs {
         public ToggleObserve toggleObserve;
         
         public void Launch() {
-            var a=new Camera();
+            var a=new GameObject();
             a.transform.position = pos;
-            var temp=playerObjectCreator.Create(a);
-            Destroy(a);
+            var temp=playerObjectCreator.Create(a.AddComponent<Camera>());
+            a.gameObject.SetActive(false);
             toggleObserve.SetUp(temp.GetComponent<AttackByPath>());
         }
 
