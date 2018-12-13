@@ -40,4 +40,5 @@ MonoBehaviour:
   - DownRPC
   - UpRPC
   - AttackRPC
+  - DamageRPC
   DisableAutoOpenWizard: 1

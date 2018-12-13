@@ -11,7 +11,6 @@ namespace Battles.Players {
         private void OnTriggerEnter(Collider other) {
             if (other.gameObject.CompareTag("EnemyBullet")) {
                 hitStream.OnNext(1);
-                ScrollLogger.Log("hit");
             }
         }
     }

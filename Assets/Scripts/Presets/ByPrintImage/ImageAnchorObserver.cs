@@ -16,7 +16,7 @@ namespace Presets.ByPrintImage {
                 ScrollLogger.Log("Missing image anchor");
                 return;
             }
-            
+            WorldOriginSetter.Set(anc.transform);
             changeAbleStream.OnNext(Unit.Default);
         }
     }

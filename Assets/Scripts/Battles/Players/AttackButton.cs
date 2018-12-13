@@ -1,4 +1,5 @@
 using Systems;
+using UniRx;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
@@ -8,7 +9,7 @@ namespace Battles.Players {
         public AttackByPath AttackByPath { get; set; }
         private EventTrigger eventTrigger;
 
-        private bool trigger;
+        [SerializeField]private bool trigger;
         
         private void Start() {
             eventTrigger = this.GetComponent<EventTrigger>();
@@ -23,12 +24,14 @@ namespace Battles.Players {
             up.callback.AddListener((n)=>Up());
             eventTrigger.triggers.Add(up);
 
+            this.ObserveEveryValueChanged(n => n.trigger)
+                .Subscribe(n => {
+                    if (AttackByPath != null) AttackByPath.Attack(trigger);
+                });
         }
+        
+        
 
-        private void Update() {
-            if (AttackByPath == null) return;
-            AttackByPath.Attack(trigger);
-        }
 
         private void Down() {
             trigger = true;

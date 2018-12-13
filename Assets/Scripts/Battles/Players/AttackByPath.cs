@@ -14,6 +14,8 @@ namespace Battles.Players {
             photonView = this.GetComponent<PhotonView>();
         }
 
+
+
         public void Attack(bool t) {
             photonView.RPC("AttackRPC",PhotonTargets.AllBuffered,t);
         }
