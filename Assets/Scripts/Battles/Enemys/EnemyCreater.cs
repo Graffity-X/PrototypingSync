@@ -7,7 +7,7 @@ namespace Battles.Enemys {
 
 
         private void Start() {
-            Launch();
+            
         }
 
         public void Launch() {
