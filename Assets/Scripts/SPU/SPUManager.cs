@@ -61,9 +61,19 @@ namespace SPU {
 		}
 
 		private void TransCanvas(Canvas destination,Canvas current) {
+			foreach (var item in GetRecievers(current)) {
+				item.OnCloseCanvas();
+			}
 			current.gameObject.SetActive(false);
 			destination.gameObject.SetActive(true);
+			foreach (var item in GetRecievers(destination)) {
+				item.OnOpenCanvas();
+			}
 			currentCanvas = destination;
+		}
+
+		private IRecieveSPUNotification[] GetRecievers(Canvas canvas) {
+			return canvas.transform.GetComponentsInChildren<IRecieveSPUNotification>();
 		}
 		
 		[Serializable]
