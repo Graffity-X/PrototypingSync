@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Battles {
+namespace Battles.Enemys {
     public class EnemyBullet : MonoBehaviour {
         [SerializeField] private float speed;
         [SerializeField] private float deleteTime;

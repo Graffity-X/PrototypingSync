@@ -1,7 +1,7 @@
 using UniRx;
 using UnityEngine;
 
-namespace Battles {
+namespace Battles.Systems {
     public class BattleSetUpWait : MonoBehaviour {
         [SerializeField] private int needPlayerNum = 2;
         

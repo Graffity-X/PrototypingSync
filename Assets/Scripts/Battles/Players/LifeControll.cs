@@ -2,7 +2,7 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace Battles {
+namespace Battles.Players {
     public class LifeControll : MonoBehaviour {
         [SerializeField]private int life;
         [SerializeField]private Image[] icons;

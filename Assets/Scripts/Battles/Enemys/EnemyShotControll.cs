@@ -1,8 +1,9 @@
 using Systems;
-using UnityEngine;
+using Battles.Systems;
 using UniRx;
+using UnityEngine;
 
-namespace Battles {
+namespace Battles.Enemys {
     public class EnemyShotControll : MonoBehaviour {
         [SerializeField] private GameObject bullet;
         [SerializeField] private float attackInterval;

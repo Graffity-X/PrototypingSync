@@ -4,7 +4,7 @@ using System.Linq;
 using Systems;
 using UnityEngine;
 
-namespace Battles {
+namespace Battles.Systems {
     public class PlayersInfo : MonoBehaviour {
         [SerializeField]private List<GameObject> players;
         public ReadOnlyCollection<GameObject> Players=>new ReadOnlyCollection<GameObject>(players);

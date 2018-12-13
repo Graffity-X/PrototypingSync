@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace DefaultNamespace {
+namespace Battles.Players {
     public class LineControll : MonoBehaviour {
         public bool draw;
         public GameObject target;

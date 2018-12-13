@@ -1,8 +1,7 @@
 using Systems;
 using UnityEngine;
-using UnityEngine.Serialization;
 
-namespace Battles {
+namespace Battles.Players {
     public class PlayerChaser : MonoBehaviour {
         [SerializeField] private GameObject target;
 

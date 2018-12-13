@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Battles {
+namespace Battles.Players {
     public class PlayerObjectCreator : MonoBehaviour {
         [SerializeField] private GameObject playerBody;
         

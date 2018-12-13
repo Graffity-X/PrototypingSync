@@ -2,7 +2,7 @@ using System;
 using UniRx;
 using UnityEngine;
 
-namespace Battles {
+namespace Battles.Players {
     public class AttackReciever : MonoBehaviour {
         private Subject<Unit> hitStream=new Subject<Unit>();
         public IObservable<Unit> HitStream => hitStream;

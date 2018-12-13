@@ -1,6 +1,7 @@
+using Battles.Systems;
 using UnityEngine;
 
-namespace Battles {
+namespace Battles.Enemys {
     public class EnemyCreater : MonoBehaviour {
         public GameObject Enemy;
 
