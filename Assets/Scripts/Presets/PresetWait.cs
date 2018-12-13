@@ -4,11 +4,10 @@ using UniRx;
 using UnityEngine;
 
 namespace Presets {
-    public class Starter : InterfaceSerializeFieldMonoBehaviour<IStartable> {
+    public class PresetWait : InterfaceSerializeFieldMonoBehaviour<IStartable> {
 
         private void Start() {
-            Interface.ChangeAbleStream
-                .Where(n => n)
+            Interface.CompleteSetUpPresets
                 .Subscribe(n => this.GetComponent<SPUTransTrigger>().Launch());
         }
     }

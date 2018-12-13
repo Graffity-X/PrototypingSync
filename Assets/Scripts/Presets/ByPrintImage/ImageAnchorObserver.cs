@@ -6,15 +6,14 @@ namespace Presets.ByPrintImage {
     public class ImageAnchorObserver : MonoBehaviour,IStartable {
         public ImageAnchorCreator imageAnchorCreator;
         
-        public bool AbleFg { get; private set; }
-        private Subject<bool> changeAbleStream=new Subject<bool>();
-        public IObservable<bool> ChangeAbleStream => changeAbleStream;
+        private Subject<Unit> changeAbleStream=new Subject<Unit>();
+        public IObservable<Unit> CompleteSetUpPresets => changeAbleStream;
 
         public void Launch() {
             var anc = imageAnchorCreator.ImageAnchorGo;
             if (anc == null) return;
             
-            changeAbleStream.OnNext(true);
+            changeAbleStream.OnNext(Unit.Default);
         }
     }
 }
