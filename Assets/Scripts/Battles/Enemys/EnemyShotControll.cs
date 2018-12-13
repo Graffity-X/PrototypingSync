@@ -16,7 +16,7 @@ namespace Battles.Enemys {
         }
 
         private void SetUp(GameObject target) {
-            new RandomrWithInterval(-1f, 1f, errorRange, 1.5f).PublishStream
+            new RandomInterval(attackInterval, 1.5f).PublishStream
                 .Subscribe(n => {
                     var tp = target.transform.position;
                     var hori = PointSniper.Snipe2D(new Vector2(n, n), new Vector2(tp.x - errorRange, tp.y - errorRange),
