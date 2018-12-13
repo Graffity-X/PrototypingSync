@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Systems {
+namespace Debugs {
     public class Debugger:MonoBehaviour {
         public bool debug;
         public static Debugger instance;
