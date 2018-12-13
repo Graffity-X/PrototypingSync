@@ -1,22 +1,23 @@
 using Systems;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace Battles {
-    public class CameraChaser : MonoBehaviour {
-        [SerializeField] private Camera mine;
+    public class PlayerChaser : MonoBehaviour {
+        [SerializeField] private GameObject target;
 
-        public void SetUp(Camera camera) {
-            if (mine != null) {
-                ScrollLogger.Log("I already have camera!");
+        public void SetUp(GameObject root) {
+            if (target != null) {
+                ScrollLogger.Log("I already have target!");
                 return;
             }
 
-            mine = camera;
+            target = root;
         }
 
         private void Update() {
-            transform.position = mine.transform.position;
-            transform.rotation = mine.transform.rotation;
+            transform.position = target.transform.position;
+            transform.rotation = target.transform.rotation;
         }
     }
 }

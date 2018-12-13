@@ -7,7 +7,7 @@ namespace Systems {
 	/// <summary>
 	/// http://www.kurisankaku.xyz/entry/2017/03/22/213712
 	/// </summary>
-	public class ManageScroll : MonoBehaviour {
+	public class ScrollLogger : MonoBehaviour {
 
 		// ScrollViewに表示するログ
 		public static string Logs = "";
