@@ -1,4 +1,5 @@
 using System;
+using Systems;
 using UniRx;
 using UnityEngine;
 
@@ -11,7 +12,10 @@ namespace Presets.ByPrintImage {
 
         public void Launch() {
             var anc = imageAnchorCreator.ImageAnchorGo;
-            if (anc == null) return;
+            if (anc == null) {
+                ScrollLogger.Log("Missing image anchor");
+                return;
+            }
             
             changeAbleStream.OnNext(Unit.Default);
         }
