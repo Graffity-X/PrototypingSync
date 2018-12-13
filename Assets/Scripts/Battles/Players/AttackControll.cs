@@ -1,16 +1,30 @@
-using System;
-using Systems;
+using System.Linq;
+using Battles.Systems;
 using UniRx;
 using UnityEngine;
 
 namespace Battles.Players {
     public class AttackControll : MonoBehaviour {
-        private Subject<Unit> attackStream=new Subject<Unit>();
-        public IObservable<Unit> AttackStream => attackStream;
+        [SerializeField] private LineRendererControll lineRendererControll;
+        private Subject<bool> attackStream=new Subject<bool>();
 
-        public void Attack() {
-            attackStream.OnNext(Unit.Default);
-            ScrollLogger.Log("attttt");
+        private bool isActive;
+        
+        private void Start() {
+            attackStream
+                .Where(n=>this.isActive)
+                .Subscribe(n => {
+                lineRendererControll.draw = n;
+            });
+        }
+
+        public void SetUp(AttackByPath attack_by_path) {
+            attackStream.Merge(attack_by_path.AttackStream);
+        }
+
+        public void Launch() {
+            isActive = true;
+            lineRendererControll.SetUp(this.GetComponent<PlayersManage>().Players.ToArray());
         }
     }
 }

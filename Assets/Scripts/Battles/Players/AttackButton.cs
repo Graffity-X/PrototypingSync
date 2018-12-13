@@ -5,12 +5,14 @@ using UnityEngine.EventSystems;
 namespace Battles.Players {
     public class AttackButton : MonoBehaviour {
 
-        public AttackControll AttackControll { get; set; }
+        public AttackByPath AttackByPath { get; set; }
         private EventTrigger eventTrigger;
 
         private bool trigger;
+        private PhotonView photonView;
         
         private void Start() {
+            photonView = this.GetComponent<PhotonView>();
             eventTrigger = this.GetComponent<EventTrigger>();
             
             var down=new EventTrigger.Entry();
@@ -26,17 +28,26 @@ namespace Battles.Players {
         }
 
         private void Update() {
-            if (trigger) {
-                if (AttackControll == null) return;
-                AttackControll.Attack();
-            }
+            if (AttackByPath == null) return;
+            AttackByPath.Attack(trigger);
         }
 
         private void Down() {
+            photonView.RPC("DownRPC", PhotonTargets.AllBuffered);
+        }
+        
+        [PunRPC]
+        private void DownRPC() {
             trigger = true;
         }
 
+
         private void Up() {
+            photonView.RPC("UpRPC",PhotonTargets.AllBuffered);
+        }
+        
+        [PunRPC]
+        private void UpRPC() {
             trigger = false;
         }
     }

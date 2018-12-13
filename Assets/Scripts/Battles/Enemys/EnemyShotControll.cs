@@ -10,7 +10,7 @@ namespace Battles.Enemys {
         [SerializeField] private float errorRange=1;
         
         private void Start() {
-            foreach (var item in transform.GetComponentInParent<PlayersInfo>().Players) {
+            foreach (var item in GameObject.Find("Battle").GetComponentInParent<PlayersManage>().Players) {
                 SetUp(item);
             }
         }

@@ -11,10 +11,17 @@ namespace Battles.Enemys {
         }
 
         public void Launch() {
-            var info = this.GetComponent<PlayersInfo>();
-            var p1 = info.Players[0].transform.position;
-            var p2 = info.Players[1].transform.position;
-            var pos=new Vector3((p1.x+p2.x)/2,(p1.y+p2.y)/2,(p1.z+p2.z)/2);
+            var info = this.GetComponent<PlayersManage>();
+            var po=new Vector3();
+            foreach (var item in info.Players) {
+                var tp = item.transform.position;
+                po.x += tp.x;
+                po.y += tp.y;
+                po.z = tp.z;
+            }
+
+            var l = info.AmountPlayer;
+            var pos=new Vector3(po.x/l,po.y/l,po.z/l);
             var temp=PhotonNetwork.Instantiate(Enemy.name, pos, Quaternion.identity,0);
             temp.transform.SetParent(transform);
         }

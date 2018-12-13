@@ -10,7 +10,8 @@ namespace Battles.Players {
         
         public void OnOpenCanvas() {
             var temp=playerObjectCreator.Create(camera);
-            this.GetComponent<AttackButton>().AttackControll = temp.GetComponent<AttackControll>();
+            camera.gameObject.GetComponent<BodyControll>().body = temp;
+            this.GetComponent<AttackButton>().AttackByPath = temp.GetComponent<AttackByPath>();
         }
 
         public void OnCloseCanvas() {

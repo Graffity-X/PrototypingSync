@@ -7,9 +7,9 @@ namespace Battles.Players {
         
         public GameObject Create(Camera camera) {
             var temp = PhotonNetwork.Instantiate(playerBody.name,camera.transform.position,camera.transform.rotation,0);
-            temp.GetComponent<PlayerChaser>().SetUp(camera.gameObject);
-            
-            this.GetComponent<PlayersInfo>().AddPlayer(temp);
+            //temp.GetComponent<PlayerChaser>().SetUp(camera.gameObject);
+
+            this.GetComponent<PlayersManage>().UpdatePlayer();
             return temp;
         }
     }

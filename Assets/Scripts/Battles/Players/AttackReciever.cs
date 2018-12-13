@@ -1,15 +1,17 @@
 using System;
+using Systems;
 using UniRx;
 using UnityEngine;
 
 namespace Battles.Players {
     public class AttackReciever : MonoBehaviour {
-        private Subject<Unit> hitStream=new Subject<Unit>();
-        public IObservable<Unit> HitStream => hitStream;
+        private Subject<int> hitStream=new Subject<int>();
+        public IObservable<int> HitStream => hitStream;
 
         private void OnTriggerEnter(Collider other) {
             if (other.gameObject.CompareTag("EnemyBullet")) {
-                hitStream.OnNext(Unit.Default);
+                hitStream.OnNext(1);
+                ScrollLogger.Log("hit");
             }
         }
     }
