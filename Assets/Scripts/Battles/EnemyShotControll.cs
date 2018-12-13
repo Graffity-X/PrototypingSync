@@ -7,11 +7,9 @@ namespace Battles {
         [SerializeField] private GameObject bullet;
         [SerializeField] private float attackInterval;
         [SerializeField] private float errorRange=1;
-        private GameObject[] targets;
         
         private void Start() {
-            targets = transform.GetComponentInParent<PlayersInfo>().players;
-            foreach (var item in targets) {
+            foreach (var item in transform.GetComponentInParent<PlayersInfo>().Players) {
                 SetUp(item);
             }
         }
@@ -27,7 +25,7 @@ namespace Battles {
         }
 
         private void Shot(Vector3 point) {
-            var temp = Instantiate(bullet, transform.position, Quaternion.identity);
+            var temp = PhotonNetwork.Instantiate(bullet.name, transform.position, Quaternion.identity,0);
             temp.GetComponent<EnemyBullet>().LaunchLookAt(point);
         }
     }
